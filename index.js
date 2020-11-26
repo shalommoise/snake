@@ -4,6 +4,7 @@
    score: 0,
    direction: 1,
    location: 0, 
+   difficulty : 100
  }  
 
  
@@ -16,7 +17,7 @@ while (count <= 3600) {
   node.className ="pixle";
    node.id=count;
 
-// node.setAttribute("onmouseover", `changeDot('${node.id}')`);
+
 board.append(node);
 borderMaker(count)
  count++
@@ -26,7 +27,7 @@ borderMaker(count)
 makeSnake();
 food(randomNumber());
 }
-// const changeDot = (id)=> {console.log(id)}
+
 const makeSnake =()=>{
 
     state.snake[0].forEach((dot)=>{
@@ -105,9 +106,6 @@ if(num % 60 === 0 || (num - 1) % 60 === 0) document.getElementById(num).style.ba
 
 const randomNumber = ()=>{
  let num = Math.floor(Math.random() * 3600);
-//  if(num > 0 && num <=60) randomNumber();
-// if(num > 3540 && num <=3600) randomNumber();
-// if(num % 60 === 0 || (num - 1) % 60 === 0) randomNumber();
 if(num === state.snake[1] || state.snake[0].includes(num)) return randomNumber();
  if(num > 60 && num < 3541 && num % 60 !== 0 && (num - 1) % 60 !== 0 ) return num;
 else return randomNumber()
@@ -148,7 +146,8 @@ const gameOver =(id)=>{
    borderMaker(id);
    document.getElementById("button").innerHTML ="Start Game"
 }
-// const shouldIMove=()=>{
-
-// }
-setInterval(function(){moved()}, 1000);
+const changeDifficulty=(e)=>{
+  
+  setInterval(function(){moved()}, state.difficulty);
+}
+setInterval(function(){moved()}, 50);
