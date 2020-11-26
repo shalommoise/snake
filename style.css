@@ -67,3 +67,8 @@ body {
   display: flex;
   justify-content: space-between;
 }
+@media only screen and (min-width: 600px) {
+  .controls {
+    display: none;
+  }
+}
