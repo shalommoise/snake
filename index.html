@@ -6,12 +6,13 @@
   <link rel="stylesheet" href="style.css">
   <title>snake</title>
 </head>
-<body onload="create()" onclick="move()">
+<body onload="create()" onclick="moved()">
   <header class="Settings">
     <div class="scoreBoard">
       <label for="score">Score:</label>
           <p name="score" id="score">0</p> 
     </div>
+    <div class="start"> <button id="button" onclick="start()">Start Game</button></div>
     <div class="difficulty">Difficulty:</div>
   </header>
   <section class="board"></section>

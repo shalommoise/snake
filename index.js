@@ -16,27 +16,31 @@ while (count <= 3600) {
   node.className ="pixle";
    node.id=count;
 
-node.setAttribute("onmouseover", `changeDot('${node.id}')`);
+// node.setAttribute("onmouseover", `changeDot('${node.id}')`);
 board.append(node);
 borderMaker(count)
  count++
 
 }
-state.gameOn = true;
+
 makeSnake();
 food(randomNumber());
 }
-const changeDot = (id)=> {console.log(id)}
+// const changeDot = (id)=> {console.log(id)}
 const makeSnake =()=>{
-  if(state.gameOn){
+
     state.snake[0].forEach((dot)=>{
       document.getElementById(dot).style.background ="black"
     })
     document.getElementById(state.snake[1]).style.background ="red"
-  }
-}
 
+}
+const moved =()=>{
+  if(state.gameOn) move()
+  
+}
 const move=()=>{
+  
   let count = state.direction;
   let snake = state.snake[0];
   let head = state.snake[1];
@@ -57,9 +61,11 @@ const move=()=>{
      state.snake[0] = snake;
      state.snake[1] = head;
      eating()
+     endGame(head)
      for(let i = 1; i<=3600;i++){
        if(i !== head && i !==state.location && !snake.includes(i) && borderMaker(i)) document.getElementById(i).style.background ="lightblue";
      }
+  
 }
 document.onkeydown = checkKey;
 
@@ -99,11 +105,12 @@ if(num % 60 === 0 || (num - 1) % 60 === 0) document.getElementById(num).style.ba
 
 const randomNumber = ()=>{
  let num = Math.floor(Math.random() * 3600);
- if(num > 0 && num <=60) randomNumber();
-if(num > 3540 && num <=3600) randomNumber();
-if(num % 60 === 0 || (num - 1) % 60 === 0) randomNumber();
-if(num === state.snake[1] || state.snake[0].includes(num)) randomNumber();
-return num;
+//  if(num > 0 && num <=60) randomNumber();
+// if(num > 3540 && num <=3600) randomNumber();
+// if(num % 60 === 0 || (num - 1) % 60 === 0) randomNumber();
+if(num === state.snake[1] || state.snake[0].includes(num)) return randomNumber();
+ if(num > 60 && num < 3541 && num % 60 !== 0 && (num - 1) % 60 !== 0 ) return num;
+else return randomNumber()
 }
 
 const eating =()=>{
@@ -113,4 +120,31 @@ const eating =()=>{
     document.getElementById("score").innerHTML = state.score;
     state.snake[0].unshift(state.snake[0][0] - state.direction)
   }
+}
+const start =()=>{
+state.gameOn = !state.gameOn ;
+const button = document.getElementById("button");
+button.innerHTML = state.gameOn ? "Pause Game" : "Continue Game"
+}
+
+const endGame = (num)=>{
+ if(num > 0 && num <=60) gameOver(num);
+if(num > 3540 && num <=3600)  gameOver(num);
+if(num % 60 === 0 || (num - 1) % 60 === 0)  gameOver(num);
+if(state.snake[0].includes(num)) gameOver(num);
+}
+
+
+const gameOver =(id)=>{
+  for(let i = 1; i<=3600;i++){
+    document.getElementById(i).style.background ="lightblue";
+     }
+  state.gameOn = false;
+  state.score = 0;
+   document.getElementById("score").innerHTML = state.score;
+  state.snake = [[1810,1811],1812];
+   food(randomNumber());
+   makeSnake();
+   borderMaker(id);
+   document.getElementById("button").innerHTML ="Start Game"
 }
