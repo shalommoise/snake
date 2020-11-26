@@ -148,3 +148,7 @@ const gameOver =(id)=>{
    borderMaker(id);
    document.getElementById("button").innerHTML ="Start Game"
 }
+// const shouldIMove=()=>{
+
+// }
+setInterval(function(){moved()}, 1000);
