@@ -1,0 +1,16 @@
+body {
+  border: solid;
+  height: 600px;
+}
+.Settings {
+  border: solid;
+  height: 20%;
+  margin: 5px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.board {
+  border: solid;
+  height: 75%;
+  margin: 5px;
+}
