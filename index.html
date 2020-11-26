@@ -10,7 +10,7 @@
   <header class="Settings">
     <div class="scoreBoard">
       <label for="score">Score:</label>
-          <p name="score" id="score">0</p> 
+          <div name="score" id="score">0</div> 
     </div>
     <div class="start"> <button id="button" onclick="start()">Start Game</button></div>
     <div class="difficulty"><label for="difficulty">Difficulty</label>
@@ -19,6 +19,15 @@
     </select></div>
   </header>
   <section class="board"></section>
+  <div class="controls">
+    <div class="control" id="up" onmouseover="mobileControls(id)"></div> 
+    <div class="lr">
+    <div class="control" id="right" onmouseover="mobileControls(id)"></div> 
+    <div class="control" id="left" onmouseover="mobileControls(id)"></div>
+    </div>
+    <div class="control" id="down" onmouseover="mobileControls(id)"></div>
+
+  </div>
 </body>
 <script src="index.js"></script>
 </html>

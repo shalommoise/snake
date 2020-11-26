@@ -74,19 +74,20 @@ function checkKey(e) {
 
     e = e || window.event;
 
-    if (e.keyCode == '38') {
+ if(e.keyCode === 32 ||e.keyCode === 13 )   start();  
+    if (e.keyCode === 38) {
         // up arrow
           if(state.direction !== 60)  state.direction = -60;
     }
-    else if (e.keyCode == '40') {
+    else if (e.keyCode ===40) {
         // down arrow
           if(state.direction !== -60)  state.direction = 60;
     }
-    else if (e.keyCode == '37') {
+    else if (e.keyCode === 37) {
        // left arrow
         if(state.direction !== 1)  state.direction = -1;
     }
-    else if (e.keyCode == '39') {
+    else if (e.keyCode ===  39) {
        // right arrow
         if(state.direction !== -1) state.direction = 1;
     }
@@ -151,3 +152,21 @@ const changeDifficulty=(e)=>{
   setInterval(function(){moved()}, state.difficulty);
 }
 setInterval(function(){moved()}, 50);
+const mobileControls = (id)=>{
+ if (id === "up") {
+        // up arrow
+          if(state.direction !== 60)  state.direction = -60;
+    }
+    else if (id === "down") {
+        // down arrow
+          if(state.direction !== -60)  state.direction = 60;
+    }
+    else if (id === "left") {
+       // left arrow
+        if(state.direction !== 1)  state.direction = -1;
+    }
+    else if (id === "right") {
+       // right arrow
+        if(state.direction !== -1) state.direction = 1;
+    }
+}

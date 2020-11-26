@@ -8,6 +8,7 @@ body {
   margin: 5px;
   display: flex;
   justify-content: space-evenly;
+  padding: 10px;
 }
 .board {
   border: solid;
@@ -24,4 +25,42 @@ body {
 }
 .scoreBoard {
   display: flex;
+}
+
+#up {
+  /* transform: rotate(50deg); */
+  background-color: blue;
+  grid-area: up;
+}
+#down {
+  background-color: red;
+  /* transform: rotate(50deg); */
+  grid-area: down;
+}
+#right {
+  background-color: green;
+  /* transform: skewY(20deg); */
+  grid-area: right;
+  margin-right: 10px;
+}
+#left {
+  /* transform: skewY(20deg); */
+  grid-area: left;
+  margin-left: 10px;
+}
+.controls {
+  padding: 10px;
+}
+.control {
+  margin: auto;
+  transform: rotate(50deg);
+  height: 40px;
+  width: 40px;
+  background-color: lightcoral;
+
+  border: solid;
+}
+.lr {
+  display: flex;
+  justify-content: space-between;
 }
