@@ -4,7 +4,8 @@
    score: 0,
    direction: 1,
    location: 0, 
-   difficulty : 100
+   difficulty : 500,
+   highScore: 0
  }  
 
  
@@ -61,7 +62,7 @@ const move=()=>{
     
      state.snake[0] = snake;
      state.snake[1] = head;
-     eating()
+     if(head === state.location)  eating()
      endGame(head)
      for(let i = 1; i<=3600;i++){
        if(i !== head && i !==state.location && !snake.includes(i) && borderMaker(i)) document.getElementById(i).style.background ="lightblue";
@@ -113,11 +114,14 @@ else return randomNumber()
 }
 
 const eating =()=>{
-  if(state.snake[1] === state.location) {
+
     food(randomNumber());
     state.score++
     document.getElementById("score").innerHTML = state.score;
-    state.snake[0].unshift(state.snake[0][0] - state.direction)
+    state.snake[0].unshift(state.snake[0][0] - state.direction);
+if(state.score > state.highScore ){ 
+  state.highScore = state.score;
+  document.getElementById("highScore").innerHTML = state.highScore;
   }
 }
 const start =()=>{
@@ -135,6 +139,7 @@ if(state.snake[0].includes(num)) gameOver(num);
 
 
 const gameOver =(id)=>{
+  
   for(let i = 1; i<=3600;i++){
     document.getElementById(i).style.background ="lightblue";
      }
@@ -147,26 +152,26 @@ const gameOver =(id)=>{
    borderMaker(id);
    document.getElementById("button").innerHTML ="Start Game"
 }
-const changeDifficulty=(e)=>{
+const changeDifficulty=()=>{
   
   setInterval(function(){moved()}, state.difficulty);
 }
-setInterval(function(){moved()}, 50);
+setInterval(function(){moved()}, 70);
 const mobileControls = (id)=>{
  if (id === "up") {
-        // up arrow
+       
           if(state.direction !== 60)  state.direction = -60;
     }
     else if (id === "down") {
-        // down arrow
+       
           if(state.direction !== -60)  state.direction = 60;
     }
-    else if (id === "left") {
-       // left arrow
+    else if (id === "right") {
+   
         if(state.direction !== 1)  state.direction = -1;
     }
-    else if (id === "right") {
-       // right arrow
+    else if (id === "left") {
+      
         if(state.direction !== -1) state.direction = 1;
     }
 }

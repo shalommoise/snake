@@ -26,6 +26,9 @@ body {
 .scoreBoard {
   display: flex;
 }
+#score {
+  margin-right: 3px;
+}
 
 #up {
   /* transform: rotate(50deg); */
