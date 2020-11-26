@@ -3,7 +3,7 @@
    snake: [[1810,1811],1812],
    score: 0,
    direction: 1,
-   
+   location: 0, 
  }  
 
  
@@ -56,8 +56,9 @@ const move=()=>{
     
      state.snake[0] = snake;
      state.snake[1] = head;
+     eating()
      for(let i = 1; i<=3600;i++){
-       if(i !== head && i !==state.location && !snake.includes(i)) document.getElementById(i).style.background ="lightblue";
+       if(i !== head && i !==state.location && !snake.includes(i) && borderMaker(i)) document.getElementById(i).style.background ="lightblue";
      }
 }
 document.onkeydown = checkKey;
@@ -87,7 +88,8 @@ function checkKey(e) {
 
 const food =(num)=>{
 state.location = num 
-document.getElementById(num).style.background = "yellow"
+document.getElementById(num).style.background = "yellow";
+
 }
 const borderMaker = (num) =>{
 if(num > 0 && num <=60) document.getElementById(num).style.background = "orange";
@@ -100,5 +102,15 @@ const randomNumber = ()=>{
  if(num > 0 && num <=60) randomNumber();
 if(num > 3540 && num <=3600) randomNumber();
 if(num % 60 === 0 || (num - 1) % 60 === 0) randomNumber();
+if(num === state.snake[1] || state.snake[0].includes(num)) randomNumber();
 return num;
+}
+
+const eating =()=>{
+  if(state.snake[1] === state.location) {
+    food(randomNumber());
+    state.score++
+    document.getElementById("score").innerHTML = state.score;
+    state.snake[0].unshift(state.snake[0][0] - state.direction)
+  }
 }
